@@ -95,7 +95,7 @@ function draw() {
   y = random(-10, 10);
   c = random(1, 255);
   r = random(1, 100);
-  if(box == true || mouseY <=50){
+  if(box == true || mouseY >= 10 && mouseY <= 30 && mouseX >= 310 && mouseX <= 330){
     fill(c,c,c);
     rect(310 + x, 10 + y, 20, 20);
   }else{
