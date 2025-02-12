@@ -5,6 +5,11 @@ let yellowbox = false;
 let greenbox = false;
 let redbox = false;
 let bluebox = false;
+let spin = true;
+let spinxcoord = 20;
+let spinycoord = 20;
+let spinxmod = 0;
+let spinymod = 0;
 function setup() {
   createCanvas(400, 400);
   frameRate(25);
@@ -20,75 +25,72 @@ function draw() {
   y = random(-10, 10);
   let c = random(1, 255);
   let r = random(1, 100);
-  let num = random(1, 4);
-  
-  text(num, 20, 20);
-  if(greenbox == true || mouseY >= 100 && mouseY <= 300 && mouseX >= 100 && mouseX <= 150){
-    fill(r, c, r);
-    rect(100 + x, 100 + y, 50, 200);
-  }else{
-    fill(255);
-    rect(100, 100, 50, 200);
-  }
-  
-  x = random(-10, 10);
-  y = random(-10, 10);
-  c = random(1, 255);
-  r = random(1, 100);
-  if(bluebox == true || mouseY >= 100 && mouseY <= 300 && mouseX >= 210 && mouseX <= 260){
-    fill(r, r, c);
-    rect(210 + x, 100 + y, 50, 200);
-  }else{
-    fill(255);
-    rect(210, 100, 50, 200);
-  }
-  
-  x = random(-10, 10);
-  y = random(-10, 10);
-  c = random(1, 255);
-  r = random(1, 100);
-  if(redbox == true || mouseY >= 100 && mouseY <= 300 && mouseX >= 10 && mouseX <= 90){
+  if(redbox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 23 && mouseX <= 73){
     fill(c, r, r);
-    rect(10 + x, 100 + y, 50, 200);
+    rect(23 + x, height - 203 + y, 50, 200);
   }else{
     fill(255);
-    rect(10, 100, 50, 200);
+    rect(23, height - 203, 50, 200);
+  }
+
+  x = random(-10, 10);
+  y = random(-10, 10);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(greenbox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 73 && mouseX <= 123){
+    fill(r, c, r);
+    rect(73 + x, height - 203 + y, 50, 200);
+  }else{
+    fill(255);
+    rect(73, height - 203, 50, 200);
   }
   
   x = random(-10, 10);
   y = random(-10, 10);
   c = random(1, 255);
   r = random(1, 100);
-  if(yellowbox == true || mouseY >= 40 && mouseY <= 90 && mouseX >= 10 && mouseX <= 210){
-    fill(c, c, r);
-    rect(10 + x, 40 + y, 200, 50);
+  if(bluebox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 123 && mouseX <= 173){
+    fill(r, r, c);
+    rect(123 + x, height - 203 + y, 50, 200);
   }else{
     fill(255);
-    rect(10, 40, 200, 50);
+    rect(123, height - 203, 50, 200);
   }
   
   x = random(-10, 10);
   y = random(-10, 10);
   c = random(1, 255);
   r = random(1, 100);
-  if(magentabox == true || mouseY >= 100 && mouseY <= 300 && mouseX >= 290 && mouseX <= 340){
-    fill(c, r, c);
-    rect(290 + x, 100 + y, 50, 200);
-  }else{
-    fill(255);
-    rect(290, 100, 50, 200);
-  }
-  
-  x = random(-10, 10);
-  y = random(-10, 10);
-  c = random(1, 255);
-  r = random(1, 100);
-  if(cyanbox == true || mouseY >= 330 && mouseY <= 380 && mouseX >= 10 && mouseX <= 210){
+  if(cyanbox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 173 && mouseX <= 223){
     fill(r, c, c);
-    rect(10 + x, 330 + y, 200, 50);
+    rect(173 + x, height - 203 + y, 50, 200);
   }else{
     fill(255);
-    rect(10, 330, 200, 50);
+    rect(173, height - 203, 50, 200);
+  }
+
+  x = random(-10, 10);
+  y = random(-10, 10);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(magentabox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 223 && mouseX <= 273){
+    fill(c, r, c);
+    rect(223 + x, height - 203 + y, 50, 200);
+  }else{
+    fill(255);
+    rect(223, height - 203, 50, 200);
+  }
+
+  x = random(-10, 10);
+  y = random(-10, 10);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(yellowbox == true || mouseY >= height - 203 && mouseY <= height && mouseX >= 273 && mouseX <= 323){
+    fill(c, c, r);
+    rect(273 + x, height - 203 + y, 50, 200);
+  }else{
+    fill(255);
+    rect(273, height - 203, 50, 200);
   }
 
   x = random(-10, 10);
@@ -101,6 +103,47 @@ function draw() {
   }else{
     fill(255);
     rect(310, 10, 20, 20);
+  }
+
+  // spinx = 230;//280
+  // spiny = 20;//70
+  //spinx spinxcoord spinxmod
+  x = random(-20, 20);
+  y = random(-20, 20);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(mouseY >= spinycoord && mouseY <= spinycoord + 50 && mouseX >= spinxcoord && mouseX <= spinxcoord + 50){
+    fill(c,r,c);
+    spin = false;
+    noStroke();
+    let butt = random(0 + 13, width - 53);
+    let fart = random(0 + 13, height - 53);
+    rect(butt + x, fart + y, 50, 50);
+    rect(spinxcoord + x, spinycoord + y, 50, 50);
+
+  }else{
+    fill(255);
+    spin = true;
+    rect(spinxcoord, spinycoord, 50, 50);
+  }
+
+  if(spin == true){
+    if(spinxcoord < 250 && spinycoord == 20){
+      spinxmod = 5;
+    }else if(spinxcoord > 20 && spinycoord == 70){
+      spinxmod = -5;
+    }else{
+      spinxmod = 0;
+    }
+    if(spinxcoord == 250 && spinycoord < 70){
+      spinymod = 5;
+    }else if(spinxcoord == 20 && spinycoord > 20){
+      spinymod = -5;
+    }else{
+      spinymod = 0;
+    }
+    spinxcoord = spinxcoord + spinxmod;
+    spinycoord = spinycoord + spinymod;
   }
 }
 
