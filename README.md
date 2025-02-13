@@ -38,7 +38,7 @@ This code means that when the mouse is pressed while over the box it would turn 
   }`
 This piece of code will means that while the mouse is over the box it will simulate a glitch out, this effect will also happen when the box statement is true. I'm not sure whether to apply this to the other pieces of code.
 
-I have an idea which is to have the boxes constantly moving and then have them stay in one spot when they glitch out. Trying to make the boxes move was difficult because I couldn't figure out how to make it move so I went back to a previous workshop task (https://garuinja.github.io/workshop-task-9/) which has work where there are moving objects. But the code I want to make would be slightly different because in the previous code has the objects move from left to right while in this one I was planning to make go in like a circle loop. Which lead me to this.
+I have an idea which is to have the boxes constantly moving and then have them stay in one spot when they glitch out. Trying to make the boxes move was difficult because I couldn't figure out how to make it move so I went back to a previous workshop task (https://github.com/Garuinja/workshop-task-9) which has work where there are moving objects. But the code I want to make would be slightly different because in the previous code has the objects move from left to right while in this one I was planning to make go in like a circle loop. Which lead me to this.
 `   if(spinxcoord < 250 && spinycoord == 20){
       spinxmod = 5;
     }else if(spinxcoord > 20 && spinycoord == 70){
