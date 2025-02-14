@@ -158,4 +158,131 @@ Now you may have seen
     rect(butt + x, fart + y, 50, 50);`
 within the code. Now these were added to make it the 'glitch out' look more real. `noStroke();` makes it look like the texture is missing and the other pieces of code are there to make another box show up when the initial box 'glitch out' making it look like another the rest of the code is 'glitching out' as well (the variable names will be changed in the final product but for now they're just placeholders).
 
-I got a clear idea on what the final product of the artwork is going to be. First, I'm going to take the red, green, blue and cyan boxes I made before and make them moving and start them off at different corners of the canvas. Then I'm going to have the magenta and yellow boxes and also make them moving but inside the red, green, blue and cyan boxes and then I'm going to take the original moving box and put that inside the magenta and yellow boxes. Finally, I will take the box that can be turned on and off and place that in the center and have that be button that can turn on the 'glitches' for everything else. Of course, the boxes will still 'glitch out' when the mouse hovers over them but the button box will turn on the 'glitch' for every box.
+I got a clear idea on what the final product of the artwork is going to be. First, I'm going to take the red, green, blue and cyan boxes I made before and make them moving and start them off at different corners of the canvas. Then I'm going to have the magenta and yellow boxes and also make them moving but in between the red, green, blue and cyan boxes and then I'm going to take the original moving box and put that in between the magenta and yellow boxes. Finally, I will take the box that can be turned on and off and place that in the center and have that be a button that can turn on the 'glitches' for everything else. Of course, the boxes will still 'glitch out' when the mouse hovers over them but the button box will turn on the 'glitch' for every box.
+
+I decided to make the boxes all have the following features: 'glitching' when the mouse hovers over them, movement and pausing when 'glitching'. An example of this code would be
+` let x = random(-10, 10);
+  let y = random(-10, 10);
+  let c = random(1, 255);
+  let r = random(1, 100);
+  if(redbox == true || mouseY >= redycoord && mouseY <= redycoord + 200 && mouseX >= 5 && mouseX <= 55){
+    fill(c, r, r);
+    noStroke();
+    redmove = false;
+    if(box == true){
+      butt = random(0 + 13, width - 53);
+      fart = random(0 + 13, height - 53);
+      rect(butt + x, fart + y, 50, 50);
+    }
+    rect(5 + x, redycoord + y, 50, 200);
+  }else{
+    fill(255);
+    stroke(93, 226, 231);
+    redmove = true;
+    rect(5, redycoord, 50, 200);
+  }`
+
+  `if(redmove == true){
+    if(redycoord == 0){
+      redymod = 5;
+    }else if(redycoord == height - 205){
+      redymod = -5;
+    }
+    redycoord = redycoord + redymod;
+  }`
+
+This code is for the red box and the blue and magenta boxes are similar as they also move vertically while the codes for green, cyan and yellow are like this
+`  x = random(-10, 10);
+  y = random(-10, 10);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(greenbox == true || mouseY >= 5 && mouseY <= 55 && mouseX >= greenxcoord && mouseX <= greenxcoord + 200){
+    fill(r, c, r);
+    noStroke();
+    if(box == true){
+      butt = random(0 + 13, width - 53);
+      fart = random(0 + 13, height - 53);
+      rect(butt + x, fart + y, 50, 50);
+    }
+    greenmove = false;
+    rect(greenxcoord + x, 5 + y, 200, 50);
+  }else{
+    fill(255);
+    stroke(93, 226, 231);
+    greenmove = true;
+    rect(greenxcoord, 5, 200, 50);
+  }`
+
+  `if(greenmove == true){
+    if(greenxcoord == 5){
+      greenxmod = 5;
+    }else if(greenxcoord == 195){
+      greenxmod = -5;
+    }
+    greenxcoord = greenxcoord + greenxmod;
+  }`
+This is because they move horizontally. The code for the original moving box is basically the same while the original 'glitch' box has been given the moving feature like this.
+` x = random(-10, 10);
+  y = random(-10, 10);
+  c = random(1, 255);
+  r = random(1, 100);
+  if(box == true || mouseY >= boxycoord && mouseY <= boxycoord + 20 && mouseX >= boxxcoord && mouseX <= boxxcoord + 20){
+    fill(c,c,c);
+    noStroke();
+    boxmove = false;
+    if(box == true){
+      butt = random(0 + 13, width - 53);
+      fart = random(0 + 13, height - 53);
+      rect(butt + x, fart + y, 50, 50);
+    }
+    rect(boxxcoord + x, boxycoord + y, 20, 20);
+  }else{
+    fill(255);
+    stroke(93, 226, 231);
+    boxmove = true;
+    rect(boxxcoord, boxycoord, 20, 20);
+  }`
+
+  `if(boxmove == true){
+    if(boxxcoord < 265 && boxycoord == 115){
+      boxxmod = 5;
+    }else if(boxxcoord > 170 && boxycoord == 210){
+      boxxmod = -5;
+    }else{
+      boxxmod = 0;
+    }
+    if(boxxcoord == 265 && boxycoord < 210){
+      boxymod = 5;
+    }else if(boxxcoord == 170 && boxycoord > 115){
+      boxymod = -5;
+    }else{
+      boxymod = 0;
+    }
+    boxxcoord = boxxcoord + boxxmod;
+    boxycoord = boxycoord + boxymod;
+  }`
+I've also changed code for the mouse press to be like this.
+`function mousePressed(){
+  if(mouseY >= boxycoord && mouseY <= boxycoord + 20 && mouseX >= boxxcoord && mouseX <= boxxcoord + 20){
+    if(box == true){
+      box = false;
+      redbox = false;
+      bluebox = false;
+      greenbox = false;
+      cyanbox = false;
+      magentabox = false;
+      yellowbox = false;
+      spinbox = false;
+    }else{
+      box = true;
+      redbox = true;
+      bluebox = true;
+      greenbox = true;
+      cyanbox = true;
+      magentabox = true;
+      yellowbox = true;
+      spinbox = true;
+    }
+  }
+}`
+Now when the mouse presses over the original 'glitch' box it turns on the simulated 'glitch' effect for every box. But I do want to put it on a delay so then it doesn't become a full overload. Like pressing the original 'glitch' box will cause it to simulate 'glitch' then we have the next box, then the next and so on. I prefer this approach than having a full on information overload because then it's more gradual and showcases the idea of a 'cool glitch' being more about the process rather than the end result and also because I think the end product is an info overload because each box will have another box created at the same time when simulating the 'glitch' out.
