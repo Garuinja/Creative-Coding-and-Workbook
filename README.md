@@ -287,4 +287,77 @@ I've also changed code for the mouse press to be like this.
 }`
 Now when the mouse presses over the original 'glitch' box it turns on the simulated 'glitch' effect for every box. But I do want to put it on a delay so then it doesn't become a full overload. Like pressing the original 'glitch' box will cause it to simulate 'glitch' then we have the next box, then the next and so on. I prefer this approach than having a full on information overload because then it's more gradual and showcases the idea of a 'cool glitch' being more about the process rather than the end result and also because I think the end product is an info overload because each box will have another box created at the same time when simulating the 'glitch' out.
 
-I think I thought of a way to have it gradually get more 'glitchy'. I was planning to use `setTimeout()` and place the `variable = true;` statements in them like `setTimeout(box = true, 2000)` but `setTimeout()` only takes functions so my plan is to make several functions and run it like `setTimeout(function_one, 2000);` or something like that. Then each function would look like this
+I think I thought of a way to have it gradually get more 'glitchy'. I was planning to use `setTimeout()` and place the `variable = true;` statements in them like `setTimeout(box = true, 2000)` but `setTimeout()` only takes functions so my plan is to make several functions and run it like `setTimeout(function_one, 2000);` or something like that. Then each function would look like this.
+`function partone(){
+  if(box == false){
+    spinbox = false;
+  }else{
+    spinbox = true;
+  }
+}`
+When I originally tried writing this code it was like this.
+`function partone(){
+  if(box == true){
+    spinbox = false;
+  }else{
+    spinbox = true;
+  }
+}`
+Because I changed the box toggle from being an if statement to this
+`function partzero(){
+  if(box == true){
+    box = false;
+  }else{
+    box = true;
+  }
+}`
+Because I was worried that if I had the box toggle as an if statement it would make the other boxes turn do the opposite like when the box was simulating the 'glitch out' the other boxes would be off and also because I thought it would be inefficient to have two `setTimeout()` functions written in an if statement. This now makes my box toggle into this now.
+`function mousePressed(){
+  if(mouseY >= boxycoord && mouseY <= boxycoord + 20 && mouseX >= boxxcoord && mouseX <= boxxcoord + 20){
+    setTimeout(partzero, 0);
+    setTimeout(partone, 2000);
+    setTimeout(parttwo, 5000);
+    setTimeout(partthree, 8000);
+  }
+}`
+And these are the functions for the boxes.
+`function partzero(){
+  if(box == true){
+    box = false;
+  }else{
+    box = true;
+  }
+}`
+
+`function partone(){
+  if(box == false){
+    spinbox = false;
+  }else{
+    spinbox = true;
+  }
+}`
+
+`function parttwo(){
+  if(box == false){
+    magentabox = false;
+    yellowbox = false;
+  }else{
+    magentabox = true;
+    yellowbox = true;
+  }
+}`
+
+`function partthree(){
+  if(box == false){
+    redbox = false;
+    bluebox = false;
+    greenbox = false;
+    cyanbox = false;
+  }else{
+    redbox = true;
+    bluebox = true;
+    greenbox = true;
+    cyanbox = true;
+  }
+}`
+I feel like leaving the `setTimeout()` for 2 seconds is too long but maybe that's just my personal opinion. I'm thinking of maybe making the simulated 'glitches' start to appear faster but I also I feel like my perception of time messed up. I do want to expand the canvas so that it takes up the window but if I do that I feel like it's going to be a lot of math involved because I want the piece to be in the center of the window and having to change all the values to fit the middle on every screen feels like a drag. I should probably add this but I changed the timing of the box toggle from 0secs, 2secs, 5secs, 8secs, to 0secs, 2secs, 4secs, 6secs. 
