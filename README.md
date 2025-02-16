@@ -286,3 +286,5 @@ I've also changed code for the mouse press to be like this.
   }
 }`
 Now when the mouse presses over the original 'glitch' box it turns on the simulated 'glitch' effect for every box. But I do want to put it on a delay so then it doesn't become a full overload. Like pressing the original 'glitch' box will cause it to simulate 'glitch' then we have the next box, then the next and so on. I prefer this approach than having a full on information overload because then it's more gradual and showcases the idea of a 'cool glitch' being more about the process rather than the end result and also because I think the end product is an info overload because each box will have another box created at the same time when simulating the 'glitch' out.
+
+I think I thought of a way to have it gradually get more 'glitchy'. I was planning to use `setTimeout()` and place the `variable = true;` statements in them like `setTimeout(box = true, 2000)` but `setTimeout()` only takes functions so my plan is to make several functions and run it like `setTimeout(function_one, 2000);` or something like that. Then each function would look like this
