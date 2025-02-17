@@ -360,4 +360,19 @@ And these are the functions for the boxes.
     cyanbox = true;
   }
 }`
+
 I feel like leaving the `setTimeout()` for 2 seconds is too long but maybe that's just my personal opinion. I'm thinking of maybe making the simulated 'glitches' start to appear faster but I also I feel like my perception of time messed up. I do want to expand the canvas so that it takes up the window but if I do that I feel like it's going to be a lot of math involved because I want the piece to be in the center of the window and having to change all the values to fit the middle on every screen feels like a drag. I should probably add this but I changed the timing of the box toggle from 0secs, 2secs, 5secs, 8secs, to 0secs, 2secs, 4secs, 6secs. 
+
+I think I have an idea of how to move the artwork into the center of the window. The idea would be to use the `createCanvas(windowWidth, windowHeight)` and then I can just just add `+ windowWidth/2 - 200` to the x coordinates and then I want to add like maybe 50p pixels of space from the top meaning I'll have to add `+ 50` to the y coordinates as well. After working on the red box it has to my intention that I defined the numbers before the setup which means that adding something like `+ windowWidth/2 - 200` to the x coordinates mean I'll have to write more lines in the draw function.
+
+Ok so after changing the code so that it works on everything here are some notes. One, this was not as hard as I thought it was and I made it harder for myself because I would add `+ windowWidth/2 - 200` and `+ 50` to the x and y coordinates I had already made respectively but I would keep adding it to statements like 
+
+`rect(5 + x + windowWidth/2 - 200, redycoord + y + 50, 50, 200);` 
+
+and 
+
+`if(redbox == true || mouseY >= redycoord && mouseY <= redycoord + 200 && mouseX >= 5 + windowWidth/2 - 200 && mouseX <= 55 + windowWidth/2 - 200)`
+
+which would make add more space to the detection and placing further than I wanted. Second, when it came to the xcoordinates at first I thought adding `+ windowWidth/2 - 200` to coordinates in the function would work but it didn't because I forgot that the draw function is constantly being run meaning that the coordinates would also be increasing by `+ windowWidth/2 - 200` so to solve this I would write a statement like this `greenxcoord = greenxcoord + windowWidth/2 - 200;` in the set up function. Now this works well, but if the window size were to change while the code is running then the boxes would either stop moving or move off of the screen (which only affects the boxes that utilizes the xcoordinates and no the one using the ycoordinates) but it can be fixed by just refreshing the page and then the code would adapt to the new window size. Third, when boxes simulate the 'glitch out' the amount of boxes created is really apparent so I wanna make boxes relevant to the size of the window so that it becomes it eventually becomes the colourful mess I want it to be in the end. Another thing I want to add, when turning the simulated 'glitches' off all the other boxes disappear, like the boxes created to give the 'glitchy effect' not the moving boxes.
+
+I have an idea of how to solve my problem with the glitch boxes. Maybe I can put the boxes in the functions which allows for the delay to happen. No, it doesn't work, probably because I'm telling the code to make a rectangle but the draw function is drawing over it.
